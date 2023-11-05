@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Random Picker</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        #result {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Random Picker</h1>
+    <p>Enter a list of items separated by commas (e.g., Item 1, Item 2, Item 3):</p>
+    <textarea id="input" rows="4" cols="50"></textarea>
+    <br>
+    <button onclick="pickRandomItem()">Pick Random Item</button>
+    <p id="result"></p>
+    
+    <script>
+        function pickRandomItem() {
+            var inputText = document.getElementById("input").value;
+            var items = inputText.split(',').map(item => item.trim());
+            
+            if (items.length === 0 || (items.length === 1 && items[0] === '')) {
+                document.getElementById("result").textContent = "Please enter at least one item.";
+                return;
+            }
+            
+            var randomIndex = Math.floor(Math.random() * items.length);
+            var randomItem = items[randomIndex];
+            
+            document.getElementById("result").textContent = "Randomly picked item: " + randomItem;
+        }
+    </script>
+</body>
+</html>
